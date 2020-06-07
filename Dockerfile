@@ -1,6 +1,13 @@
 FROM ubuntu:xenial
 MAINTAINER Patrick Oberdorf <patrick@oberdorf.net>
 
+# For Japanese https://qiita.com/ohhara_shiojiri/items/1705f0045b8d860f771d#powerdns%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%81%AE%E4%BD%9C%E6%88%90
+RUN locale-gen ja_JP.UTF-8
+ENV LANG ja_JP.UTF-8
+ENV LANGUAGE ja_JP:en
+ENV LC_ALL ja_JP.UTF-8
+
+
 COPY assets/apt/preferences.d/pdns /etc/apt/preferences.d/pdns
 RUN apt-get update && apt-get install -y curl sudo \
 	&& curl https://repo.powerdns.com/FD380FBB-pub.asc | sudo apt-key add - \
